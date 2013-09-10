@@ -29,4 +29,16 @@
         android:onClick="onTweet"
         android:text="@string/btnTweet" />
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:gravity="top"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnBack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:inputType="textMultiLine"
+        android:background="#00000000"
+        android:ems="10" />
+
 </RelativeLayout>
