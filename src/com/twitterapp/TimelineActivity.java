@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -28,7 +31,17 @@ public class TimelineActivity extends Activity {
         		
         		lvTweets.setAdapter(adapter);
         	}
+        	
+			public void onFailure(Throwable error) {
+				Log.d("Debug", "NOOO request failed.");
+				Log.d("Debug", error.getMessage());
+			}
         });
+    }
+    
+    public void onCompose(MenuItem mi){
+    	Intent i = new Intent(getBaseContext(), ComposeActivity.class);
+    	startActivity(i);
     }
 
 
