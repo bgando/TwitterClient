@@ -3,7 +3,12 @@ package com.twitterapp.models;
 import org.json.JSONObject;
 
 public class User extends BaseModel {
-    public String getName() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public String getName() {
         return getString("name");
     }
 
