@@ -46,8 +46,10 @@ public class TimelineActivity extends Activity {
     }
     
     public void onCompose(MenuItem mi){
+    	
     	Intent i = new Intent(getBaseContext(), ComposeActivity.class);
-    	startActivity(i);
+    	startActivityForResult(i, 10);
+//    	startActivity(i);
     }
 
 
@@ -59,6 +61,7 @@ public class TimelineActivity extends Activity {
     }
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	Toast.makeText(getApplicationContext(), "onActivityResult", Toast.LENGTH_SHORT).show();
 		if (resultCode == RESULT_OK && requestCode == 10) {
 			TweetData tweetData = (TweetData) data
 					.getSerializableExtra("TweetData");
