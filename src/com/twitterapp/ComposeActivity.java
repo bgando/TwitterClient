@@ -90,7 +90,7 @@ public class ComposeActivity extends Activity {
 							.getUser()
 							.getProfileBackgroundImageUrl());
 					data.setJsonString(returnObject.toString());
-					Intent in = new Intent();
+					Intent in = new Intent(getBaseContext(),TimelineActivity.class);
 					in.putExtra("TweetData", data);
 					setResult(RESULT_OK, in);
 				} catch (JSONException e) {

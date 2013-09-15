@@ -33,9 +33,9 @@ public class TimelineActivity extends Activity {
         		
         		ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
         		
-        		TweetsAdapter adapter = new TweetsAdapter(getBaseContext(), tweets);
+        		tweetsAdapter = new TweetsAdapter(getBaseContext(), tweets);
         		
-        		lvTweets.setAdapter(adapter);
+        		lvTweets.setAdapter(tweetsAdapter);
         	}
         	
 			public void onFailure(Throwable error) {
@@ -49,7 +49,6 @@ public class TimelineActivity extends Activity {
     	
     	Intent i = new Intent(getBaseContext(), ComposeActivity.class);
     	startActivityForResult(i, 10);
-//    	startActivity(i);
     }
 
 
@@ -71,12 +70,12 @@ public class TimelineActivity extends Activity {
 			Tweet tweet = new Tweet();
 			User user = new User();
 			JSONObject tweetAsJson;
-			JSONObject userAsSjson;
+			JSONObject userAsjson;
 			try {
 				tweetAsJson = new JSONObject(tweetData.getJsonString());
 				tweet.setJsonObject(tweetAsJson);
-				userAsSjson = new JSONObject(tweetData.getUserString());
-				user.setJsonObject(userAsSjson);
+				userAsjson = new JSONObject(tweetData.getUserString());
+				user.setJsonObject(userAsjson);
 				tweet.setUser(user);
 				tweetsAdapter.insert(tweet, 0);
 			} catch (JSONException e) {
