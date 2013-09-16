@@ -10,10 +10,13 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.twitterapp.fragments.HomeTimelineFragment;
+import com.twitterapp.fragments.MentionsFragment;
 import com.twitterapp.models.Tweet;
 import com.twitterapp.models.TweetData;
 import com.twitterapp.models.User;
@@ -93,7 +96,16 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
+		FragmentManager manager = getSupportFragmentManager();
+		android.support.v4.app.FragmentTransaction fts = manager.beginTransaction();
+		if(tab.getTag() == "HomeTimelineFragment"){
+			fts.replace(R.id.frameLayout, new HomeTimelineFragment());
+			
+		} else {
+			fts.replace(R.id.frameLayout, new MentionsFragment());
+		}
+		
+		fts.commit();
 		
 	}
 
