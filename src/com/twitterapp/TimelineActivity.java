@@ -1,21 +1,17 @@
 package com.twitterapp;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.twitterapp.fragments.TweetsListFragment;
 import com.twitterapp.models.Tweet;
 import com.twitterapp.models.TweetData;
 import com.twitterapp.models.User;
@@ -27,9 +23,22 @@ public class TimelineActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+        setupNavigationTabs();
     }
     
-    public void onCompose(MenuItem mi){
+    private void setupNavigationTabs() {
+    	ActionBar actionBar = getActionBar();
+    	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    	actionBar.setDisplayShowTitleEnabled(true);
+    	Tab tabHome = actionBar.newTab().setText("Home").setTag("HomeTimelineFragment").setIcon(R.drawable.ic_home);
+    	Tab tabMentions = actionBar.newTab().setText("Mentions").setTag("MentionsFragment").setIcon(R.drawable.ic_mentions);
+    	
+    	actionBar.addTab(tabHome);
+    	actionBar.addTab(tabMentions);
+    	actionBar.selectTab(tabHome);
+	}
+
+	public void onCompose(MenuItem mi){
     	
     	Intent i = new Intent(getBaseContext(), ComposeActivity.class);
     	startActivityForResult(i, 10);
