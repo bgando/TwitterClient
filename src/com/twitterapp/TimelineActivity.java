@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +18,7 @@ import com.twitterapp.models.Tweet;
 import com.twitterapp.models.TweetData;
 import com.twitterapp.models.User;
 
-public class TimelineActivity extends FragmentActivity {
+public class TimelineActivity extends FragmentActivity implements TabListener {
 	private TweetsAdapter tweetsAdapter;
 
     @Override
@@ -30,8 +32,15 @@ public class TimelineActivity extends FragmentActivity {
     	ActionBar actionBar = getActionBar();
     	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     	actionBar.setDisplayShowTitleEnabled(true);
-    	Tab tabHome = actionBar.newTab().setText("Home").setTag("HomeTimelineFragment").setIcon(R.drawable.ic_home);
-    	Tab tabMentions = actionBar.newTab().setText("Mentions").setTag("MentionsFragment").setIcon(R.drawable.ic_mentions);
+    	Tab tabHome = actionBar.newTab().setText("Home")
+    			.setTag("HomeTimelineFragment")
+    			.setIcon(R.drawable.ic_home)
+    			.setTabListener(this);
+    	
+    	Tab tabMentions = actionBar.newTab().setText("Mentions")
+    			.setTag("MentionsFragment")
+    			.setIcon(R.drawable.ic_mentions)
+    			.setTabListener(this);
     	
     	actionBar.addTab(tabHome);
     	actionBar.addTab(tabMentions);
@@ -74,6 +83,24 @@ public class TimelineActivity extends FragmentActivity {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
 	}
     
 }
