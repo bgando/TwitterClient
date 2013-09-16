@@ -6,43 +6,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.twitterapp.fragments.TweetsListFragment;
 import com.twitterapp.models.Tweet;
 import com.twitterapp.models.TweetData;
 import com.twitterapp.models.User;
 
-public class TimelineActivity extends Activity {
+public class TimelineActivity extends FragmentActivity {
 	private TweetsAdapter tweetsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        TwitterApp.getRestClient().getHomeFeed(new JsonHttpResponseHandler(){
-        	public void onSuccess(JSONArray jsonTweets){
-        		ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
-        		
-        		ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
-        		
-        		tweetsAdapter = new TweetsAdapter(getBaseContext(), tweets);
-        		
-        		lvTweets.setAdapter(tweetsAdapter);
-        	}
-        	
-			public void onFailure(Throwable error) {
-				Log.d("Debug", "NOOO request failed.");
-				Log.d("Debug", error.getMessage());
-			}
-        });
     }
     
     public void onCompose(MenuItem mi){
@@ -64,8 +48,6 @@ public class TimelineActivity extends Activity {
 		if (resultCode == RESULT_OK && requestCode == 10) {
 			TweetData tweetData = (TweetData) data
 					.getSerializableExtra("TweetData");
-			Toast.makeText(this, "tweet: " + tweetData.getTweet(),
-					Toast.LENGTH_SHORT).show();
 
 			Tweet tweet = new Tweet();
 			User user = new User();

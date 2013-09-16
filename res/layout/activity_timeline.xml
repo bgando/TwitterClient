@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     tools:context=".TimelineActivity" >
 
-    <ListView
-        android:id="@+id/lvTweets"
-        android:layout_width="match_parent"
+    <fragment
+        android:id="@+id/fragmentTweets"
+        android:name="com.twitterapp.fragments.HomeTimelineFragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" >
-    </ListView>
+        tools:layout="@layout/fragment_tweets_list" />
 
 </RelativeLayout>
