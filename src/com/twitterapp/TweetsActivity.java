@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.twitterapp.fragments.HomeTimelineFragment;
 import com.twitterapp.fragments.MentionsFragment;
@@ -21,7 +20,7 @@ import com.twitterapp.models.Tweet;
 import com.twitterapp.models.TweetData;
 import com.twitterapp.models.User;
 
-public class TimelineActivity extends FragmentActivity implements TabListener {
+public class TweetsActivity extends FragmentActivity implements TabListener {
 	private TweetsAdapter tweetsAdapter;
 
     @Override
@@ -29,6 +28,14 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
         setupNavigationTabs();
+    }
+    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.tweets, menu);
+        return true;
     }
     
     private void setupNavigationTabs() {
@@ -49,7 +56,12 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
     	actionBar.addTab(tabMentions);
     	actionBar.selectTab(tabHome);
 	}
+    
 
+    public void onProfileView(MenuItem mi){
+    	Intent i = new Intent(getBaseContext(),ProfileActivity.class);
+    	startActivity(i);
+    }
 	public void onCompose(MenuItem mi){
     	
     	Intent i = new Intent(getBaseContext(), ComposeActivity.class);
@@ -57,15 +69,9 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.timeline, menu);
-        return true;
-    }
+
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	Toast.makeText(getApplicationContext(), "onActivityResult", Toast.LENGTH_SHORT).show();
 		if (resultCode == RESULT_OK && requestCode == 10) {
 			TweetData tweetData = (TweetData) data
 					.getSerializableExtra("TweetData");

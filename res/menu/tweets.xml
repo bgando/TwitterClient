@@ -7,7 +7,14 @@
         android:showAsAction="always"
         android:onClick="onCompose"
         android:title="menu_compose"/>
-
+        
+    <item
+        android:id="@+id/menu_profile"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_profile"
+        android:showAsAction="always"
+        android:onClick="onProfileView"
+        android:title="menu_profile"/>
 </menu>
 
 

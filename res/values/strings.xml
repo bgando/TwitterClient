@@ -10,5 +10,6 @@
     <string name="btnBack">Back</string>
     <string name="btnTweet">Tweet</string>
     <string name="btnCancel">Cancel</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 
 </resources>

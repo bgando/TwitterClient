@@ -44,16 +44,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.twitterapp.TimelineActivity"
+            android:name="com.twitterapp.TweetsActivity"
             android:label="@string/title_activity_timeline" >
         </activity>
         <activity
             android:name="com.twitterapp.ComposeActivity"
             android:label="@string/title_activity_compose"
-            android:parentActivityName="com.twitterapp.TimelineActivity" >
+            android:parentActivityName="com.twitterapp.TweetsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.twitterapp.TimelineActivity" />
+        </activity>
+        <activity
+            android:name="com.twitterapp.ProfileActivity"
+            android:label="@string/title_activity_profile" >
         </activity>
     </application>
 
