@@ -19,18 +19,35 @@ public class UserTimelineFragment extends TweetsListFragment {
 		super.onCreate(savedInstanceState);
 		
 		fragmentTweets = (TweetsListFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.fragmentUserTimeline);
+		if(getActivity().getIntent().getExtras() != null){
+			long user = getActivity().getIntent().getExtras().getLong("user"); 
+			TwitterApp.getRestClient().getNewUserTimeline(user, new JsonHttpResponseHandler(){
+	        	public void onSuccess(JSONArray jsonTweets){
+	        		ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets); 
+	        		fragmentTweets.getAdapter().addAll(tweets);
 
-        TwitterApp.getRestClient().getUserTimeline(new JsonHttpResponseHandler(){
-        	public void onSuccess(JSONArray jsonTweets){
-        		ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets); 
-        		fragmentTweets.getAdapter().addAll(tweets);
+	        	}
+	        	
+				public void onFailure(Throwable error) {
+					Log.d("Debug", "NOOO request failed.");
+					Log.d("Debug", error.getMessage());
+				}
+	        });
+		} else {
+	        TwitterApp.getRestClient().getUserTimeline(new JsonHttpResponseHandler(){
+	        	public void onSuccess(JSONArray jsonTweets){
+	        		ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets); 
+	        		fragmentTweets.getAdapter().addAll(tweets);
 
-        	}
-        	
-			public void onFailure(Throwable error) {
-				Log.d("Debug", "NOOO request failed.");
-				Log.d("Debug", error.getMessage());
-			}
-        });
+	        	}
+	        	
+				public void onFailure(Throwable error) {
+					Log.d("Debug", "NOOO request failed.");
+					Log.d("Debug", error.getMessage());
+				}
+	        });
+			
+		}
+
 	}
 }

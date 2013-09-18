@@ -1,7 +1,5 @@
 package com.twitterapp;
 
-import java.io.Serializable;
-
 import org.json.JSONObject;
 
 import android.os.Bundle;
@@ -9,7 +7,6 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
