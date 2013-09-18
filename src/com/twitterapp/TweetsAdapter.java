@@ -1,19 +1,22 @@
 package com.twitterapp;
 
-import com.twitterapp.models.Tweet;
-
 import java.util.List;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.twitterapp.models.Tweet;
+import com.twitterapp.models.User;
 
 public class TweetsAdapter extends ArrayAdapter<Tweet> {
 
@@ -32,7 +35,9 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
         Tweet tweet = getItem(position);
         
         ImageView imageView = (ImageView) view.findViewById(R.id.ivProfile);
+        imageView.setOnClickListener(new ProfileOnImageClickListener(tweet.getUser()));
         ImageLoader.getInstance().displayImage(tweet.getUser().getProfileImageUrl(), imageView);
+        
         
         TextView nameView = (TextView) view.findViewById(R.id.tvName);
         String formattedName = "<b>" + tweet.getUser().getName() + "</b>" + " <small><font color='#777777'>@" +
@@ -44,4 +49,5 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
         
         return view;
 	}
+
 }
